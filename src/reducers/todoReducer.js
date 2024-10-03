@@ -7,7 +7,7 @@ import {
   } from '../actions/todoTypes';
   
   const initialState = {
-    todos: [],  // Store multiple todos
+    todos: [], 
     error: null,
   };
   
@@ -22,13 +22,13 @@ import {
       case ADD_TODO_SUCCESS:
         return {
           ...state,
-          todos: [action.payload, ...state.todos],  // Add new todo at the top
+          todos: [action.payload, ...state.todos],
           error: null,
         };
       case UPDATE_TODO_SUCCESS:
         return {
           ...state,
-          todos: action.payload,  // Update todos array with the simulated edited todo
+          todos: action.payload,
           error: null,
         };
       case DELETE_TODO_SUCCESS:

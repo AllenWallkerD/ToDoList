@@ -9,7 +9,7 @@ const TodoList = () => {
   const error = useSelector(state => state.todos.error);
 
   const [newTodo, setNewTodo] = useState('');
-  const [editTexts, setEditTexts] = useState({});  // Use an object to track edit state for each todo
+  const [editTexts, setEditTexts] = useState({});
 
   useEffect(() => {
     dispatch(fetchTodos());
@@ -27,10 +27,9 @@ const TodoList = () => {
     const updatedTodo = { title: editTexts[id], completed: false };
     dispatch(updateTodo(id, updatedTodo));
 
-    // Clear the edit text after updating the to-do
     setEditTexts((prevEditTexts) => ({
       ...prevEditTexts,
-      [id]: '',  // Reset the input field for this to-do after editing
+      [id]: '', 
     }));
   };
 
@@ -62,14 +61,14 @@ const TodoList = () => {
 
       <FlatList
         data={todos}
-        keyExtractor={item => item.id.toString()}  // Ensure each key is unique
+        keyExtractor={item => item.id.toString()} 
         renderItem={({ item }) => (
             <View style={styles.todoItem}>
             <Text style={styles.todoText}>{item.title}</Text>
             <TextInput
                 placeholder="Edit todo"
-                value={editTexts[item.id] || ''}  // Use the individual state for each todo
-                onChangeText={(text) => handleEditTextChange(item.id, text)}  // Update only the corresponding todo
+                value={editTexts[item.id] || ''}
+                onChangeText={(text) => handleEditTextChange(item.id, text)} 
                 style={styles.editInput}
             />
             <View style={styles.buttonGroup}>

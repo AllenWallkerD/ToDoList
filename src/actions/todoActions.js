@@ -7,13 +7,12 @@ import {
   TODO_ERROR,
 } from './todoTypes';
 
-// Fetch only the first 10 todos
 export const fetchTodos = () => async (dispatch) => {
   try {
-    const response = await api.get('/todos');  // Get all todos
+    const response = await api.get('/todos');
     dispatch({
       type: FETCH_TODOS_SUCCESS,
-      payload: response.data.slice(0, 10),  // Limit the result to the first 10 todos
+      payload: response.data.slice(0, 10),
     });
   } catch (error) {
     dispatch({
@@ -23,7 +22,6 @@ export const fetchTodos = () => async (dispatch) => {
   }
 };
 
-// Add a new to-do
 export const addTodo = (newTodo) => async (dispatch) => {
   try {
     const response = await api.post('/todos', newTodo);
@@ -39,12 +37,10 @@ export const addTodo = (newTodo) => async (dispatch) => {
   }
 };
 
-// Simulate updating a to-do locally
 export const updateTodo = (id, updatedTodo) => (dispatch, getState) => {
     try {
       const { todos } = getState().todos;
-  
-      // Simulate updating the todo locally by modifying the state
+
       const updatedTodos = todos.map((todo) => (todo.id === id ? { ...todo, ...updatedTodo } : todo));
   
       dispatch({
@@ -60,8 +56,6 @@ export const updateTodo = (id, updatedTodo) => (dispatch, getState) => {
     }
   };
   
-
-// Delete a to-do
 export const deleteTodo = (id) => async (dispatch) => {
   try {
     await api.delete(`/todos/${id}`);
